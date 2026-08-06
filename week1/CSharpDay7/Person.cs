@@ -28,7 +28,7 @@ public class Person
         return DateTime.Now.Year - Birthday;
     }
 
-    public void DisplayBasicInfo()
+    public virtual void DisplayBasicInfo()
     {
         Console.WriteLine($"Id: {Id}, Full Name: {FullName}, Birthday: {Birthday}, Age: {CalculateAge()}");
     }

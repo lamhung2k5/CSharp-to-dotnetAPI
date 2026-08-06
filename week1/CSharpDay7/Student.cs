@@ -18,7 +18,7 @@ public class Student : Person
         Gpa = gpa;
     }
 
-    public void DisplayStudentInfo()
+    public override void DisplayBasicInfo()
     {
         base.DisplayBasicInfo();
         Console.WriteLine($"Student Code: {StudentCode}, GPA: {Gpa}");
