@@ -1,4 +1,5 @@
-public class SalesEmployee : Employee
+public class SalesEmployee : Employee, IBonusEligible
+
 {
     public decimal SalesRevenue { get; private set; }
     public decimal CommissionRate { get; private set; }
@@ -17,9 +18,19 @@ public class SalesEmployee : Employee
         CommissionRate = commissionRate;
     }
 
+    public decimal CalculateBonus()
+    {
+        if (SalesRevenue >= 100_000_000m)
+        {
+            return  SalesRevenue * 0.02m;
+        }
+
+        return 0;
+    }
+
     public override decimal CalculateSalary()
     {
-        return BaseSalary + (SalesRevenue * CommissionRate);
+        return BaseSalary + (SalesRevenue * CommissionRate) + CalculateBonus();
     }
 
     public override void DisplayInfo()
