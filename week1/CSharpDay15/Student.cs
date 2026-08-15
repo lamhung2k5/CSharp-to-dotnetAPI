@@ -24,6 +24,11 @@ public class Student : Person
     public override void DisplayInfo()
     {
         base.DisplayInfo();
-        Console.WriteLine($"Student Code: {StudentCode}, Card Number: {StudentCard.CardNumber}, Issued Date: {StudentCard.IssuedDate}");
+        Console.WriteLine($"Student Code: {StudentCode}, ID Number: {StudentCard.CardNumber}, Issued Date: {StudentCard.IssuedDate}");
+    }
+
+    public override string ToString()
+    {
+        return "";
     }
 }
