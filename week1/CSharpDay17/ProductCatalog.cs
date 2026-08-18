@@ -1,6 +1,6 @@
 public class ProductCatalog
 {
-    public string Name { get; set; }
+    public string Name { get; private set; }
     private readonly List<Product> _products;
 
     public ProductCatalog(string name)
@@ -9,7 +9,7 @@ public class ProductCatalog
         {
             throw new ArgumentException("name can not be null or whitespace", nameof(name));
         }
-        Name = name;
+        Name = name.Trim();
         _products = new List<Product>();
     }
 
@@ -17,11 +17,11 @@ public class ProductCatalog
     {
         if(product == null)
         {
-            throw new ArgumentNullException("product can not be null", nameof(product));
+            throw new ArgumentNullException(nameof(product), "product can not be null");
         }
-        foreach(Product IsExistsProduct in _products)
+        foreach(Product existingProduct in _products)
         {
-            if(IsExistsProduct.Id == product.Id)
+            if(existingProduct.Id == product.Id)
             {
                 throw new InvalidOperationException("Product with the same ID already exists");
             }
@@ -36,9 +36,11 @@ public class ProductCatalog
             throw new ArgumentException("id cant not be null or whitespace", nameof(id));
         }
 
-        foreach(Product product in _products)
+        string? normalizedId = id.Trim();
+
+        foreach (Product product in _products)
         {
-            if(product.Id == id)
+            if(product.Id == normalizedId)
             {
                 return product;
             }
@@ -49,19 +51,24 @@ public class ProductCatalog
 
     public bool RemoveProductById(string id)
     {
-        foreach(Product product in _products)
+        
+        
+        Product? productToRemove = FindProductById(id);
+
+        if(productToRemove == null)
         {
-            if(product.Id == id)
-            {
-                _products.Remove(product);
-                return true;
-            }
+            return false;
         }
-        return false;
+        return _products.Remove(productToRemove); //remove returns true if the item was successfully removed, false otherwise
     }
 
     public void DisplayProducts()
     {
+        if(_products.Count == 0)
+        {
+            Console.WriteLine("No products in the catalog.");
+            return;
+        }
         foreach (Product product in _products)
         {
             product.DisplayInfo();

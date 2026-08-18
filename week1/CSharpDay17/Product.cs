@@ -1,8 +1,8 @@
 public class Product
 {
-    public string Id { get; set; }
-    public string Name { get; set; }
-    public decimal Price { get; set; }
+    public string Id { get; }
+    public string Name { get; private set; }
+    public decimal Price { get; private set; }
 
     public Product(string id, string name, decimal price)
     {
@@ -18,12 +18,12 @@ public class Product
         {
             throw new ArgumentException("price must be a positive number", nameof(price));
         }
-        Id = id;    
-        Name = name;
+        Id = id.Trim();    
+        Name = name.Trim();
         Price = price;
     }
 
-    public virtual void DisplayInfo()
+    public void DisplayInfo()
     {
         Console.WriteLine($"Product: {Name} (ID: {Id}), Price: ${Price:F2}");
     }
