@@ -1,0 +1,107 @@
+1. Vì sao dùng Dictionary để quản lý toàn bộ yêu cầu?
+vì nó có thể giúp tra cứu nhanh chóng dựa trên key
+
+2. Vì sao dùng Queue cho yêu cầu chờ xử lý?
+yêu cầu chờ xử lý theo nguyên tắc: yêu cầu nào trước xử lý trước, đúng theo tinh thần của Queue (FIFO)
+
+3. Vì sao dùng Stack cho chức năng hoàn tác?
+chức năng hoàn tác xử lý các yêu cầu đến sau, đúng theo tinh thần của Stack (LIFO)
+
+4. Vì sao cần thêm HashSet trong khi đã có Dictionary?
+HashSet giúp theo dõi các yêu cầu đã xử lý mà không cần lưu trữ thêm thông tin bổ sung, tiết kiệm bộ nhớ và tăng hiệu suất tra cứu.
+
+5. where T : class bảo đảm điều gì?
+where T : class đảm bảo rằng kiểu dữ liệu truyền vào cho generic class phải là một lớp (class) hay có thể nói là một kiểu tham chiếu (reference type), không phải là kiểu giá trị (value type) như int, float, struct.
+
+6. where T : IEntity cho phép dùng thành viên nào?
+nó cho phép các lớp có triển khai interface IEntity sử dụng Id
+
+7. where T : IDisplayable cho phép gọi method nào?
+nó cho phép gọi method DisplayInfo()
+
+8. Vì sao Add() trong Generic Class không cần viết Add<T>()?
+vì compiler có thể tự động suy luận kiểu dữ liệu
+
+9. Vì sao DisplayValue<T>() lại cần khai báo <T>?
+vì displayValue hiện tại đang có 2 tham số là T và value, nếu không khai báo <T> thì compiler sẽ không biết T là gì
+
+10. Vì sao mỗi test exception cần một try-catch riêng?
+vì mỗi test exception có thể ném ra các loại exception khác nhau, nếu dùng chung try-catch sẽ khó xác định được exception nào đã xảy ra và xử lý không chính xác.
+
+
+
+Đây là bản **câu trả lời chuẩn, ngắn gọn và chính xác** cho 10 câu cuối bài tổng hợp Phần 8.
+
+1. **Vì sao dùng `Dictionary` để quản lý toàn bộ yêu cầu?**
+   Vì `Dictionary<TKey, TValue>` lưu dữ liệu theo cặp key-value và cho phép tra cứu nhanh theo key. Trong bài này, `Id` của yêu cầu được dùng làm key nên có thể tìm, kiểm tra tồn tại hoặc xóa yêu cầu theo `Id` một cách thuận tiện.
+
+2. **Vì sao dùng `Queue` cho yêu cầu chờ xử lý?**
+   Vì các yêu cầu cần được xử lý theo thứ tự vào trước thì xử lý trước. Đây đúng với nguyên tắc FIFO của `Queue`: First In, First Out.
+
+3. **Vì sao dùng `Stack` cho chức năng hoàn tác?**
+   Vì khi hoàn tác, yêu cầu được xử lý gần nhất phải được hoàn tác trước. Điều này đúng với nguyên tắc LIFO của `Stack`: Last In, First Out.
+
+4. **Vì sao cần thêm `HashSet` trong khi đã có `Dictionary`?**
+   `HashSet<string>` dùng để theo dõi các `Id` đang nằm trong Queue và kiểm tra nhanh một yêu cầu đã được enqueue hay chưa. Nhờ đặc tính không chứa phần tử trùng, nó giúp ngăn một yêu cầu bị thêm vào Queue nhiều lần.
+
+5. **`where T : class` bảo đảm điều gì?**
+   Nó bảo đảm `T` phải là một reference type. Compiler chỉ biết `T` là kiểu tham chiếu, nhưng chưa biết cụ thể đó là `Student`, `Product`, `string` hay class nào khác, nên chưa thể tự động truy cập các property nghiệp vụ như `Id`, `Name`, `DisplayInfo()`.
+
+6. **`where T : IEntity` cho phép dùng thành viên nào?**
+   Nó bảo đảm mọi kiểu `T` đều implement `IEntity`. Vì `IEntity` khai báo property `Id`, Generic code có thể truy cập:
+
+```csharp
+item.Id
+```
+
+7. **`where T : IDisplayable` cho phép gọi method nào?**
+   Nó bảo đảm mọi kiểu `T` đều implement `IDisplayable`, nên Generic code có thể gọi:
+
+```csharp
+item.DisplayInfo();
+```
+
+8. **Vì sao `Add()` trong Generic Class không cần viết `Add<T>()`?**
+   Vì `T` đã được khai báo ở cấp Generic Class:
+
+```csharp
+public class EntityRepository<T>
+```
+
+Do đó các method bên trong class có thể sử dụng lại `T`:
+
+```csharp
+public void Add(T item)
+```
+
+Không cần khai báo lại `<T>` ở method.
+
+9. **Vì sao `DisplayValue<T>()` lại cần khai báo `<T>`?**
+   Vì đây là Generic Method và class chứa nó không có sẵn type parameter `T`. Method phải tự khai báo:
+
+```csharp
+public static void DisplayValue<T>(string label, T value)
+```
+
+Trong đó `<T>` là type parameter của method, còn `label` và `value` mới là các parameter dữ liệu.
+
+10. **Vì sao mỗi test exception cần một `try-catch` riêng?**
+    Vì khi một exception xảy ra trong khối `try`, chương trình sẽ rời khỏi khối `try` ngay và các câu lệnh phía sau sẽ không chạy. Tách từng test thành một `try-catch` riêng giúp tất cả trường hợp đều được kiểm tra và giúp bắt đúng loại exception của từng tình huống.
+
+Bản rút gọn để ghi nhớ:
+
+```text
+Dictionary → tra cứu theo key
+Queue      → FIFO
+Stack      → LIFO
+HashSet    → chống trùng Id trong Queue
+
+where T : class        → T là reference type
+where T : IEntity      → dùng được Id
+where T : IDisplayable → gọi được DisplayInfo()
+
+Generic Class đã có T → method dùng lại T
+Generic Method chưa có T → phải tự khai báo <T>
+
+Mỗi test exception → một try-catch riêng
+```
