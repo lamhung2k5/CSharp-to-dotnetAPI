@@ -1,0 +1,23 @@
+1. Multicast Delegate là gì?
+
+Multicast Delegate là trường hợp một biến Delegate chứa nhiều
+method trong invocation list. Khi Delegate được gọi, các method
+được thực thi lần lượt theo thứ tự đã thêm.
+
+
+2. += có tác dụng gì?
+
++= dùng để thêm một method vào invocation list của Delegate
+mà không làm mất các method đã có trước đó.
+
+
+3. -= có tác dụng gì?
+
+-= dùng để loại bỏ method được chỉ định khỏi invocation list
+của Delegate.
+
+
+4. Nếu dùng = thay vì += thì chuyện gì xảy ra?
+
+= sẽ gán lại Delegate và thay thế invocation list hiện tại bằng
+method hoặc Delegate mới được gán.
