@@ -1,0 +1,10 @@
+7. Action khác Custom Delegate ở đâu?
+Action là một Generic Delegate được .NET định nghĩa sẵn dành cho các method trả về void, còn Custom Delegate là Delegate do lập trình viên tự khai báo với tên và chữ ký mong muốn. Custom Delegate có thể trả void hoặc một kiểu dữ liệu khác. Cả Action và Custom Delegate đều hỗ trợ multicast, += và -= vì cả hai đều là Delegate.
+8. Action<string> yêu cầu method có chữ ký như thế nào?
+Action<string> yêu cầu method có chữ ký là một phương thức không trả về giá trị (void) và nhận một tham số kiểu string. 
+
+9. Vì sao Action không dùng được với method trả về int hoặc decimal?
+vì Action chỉ hỗ trợ các method không trả về giá trị.
+
+10. Action<string> có hỗ trợ += và -= không? Vì sao?
+có vì Action là một delegate, và delegate trong C# hỗ trợ các toán tử += và -= để thêm hoặc loại bỏ các method trong invocation list.
