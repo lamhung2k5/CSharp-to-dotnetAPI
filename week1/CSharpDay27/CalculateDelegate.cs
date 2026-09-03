@@ -1,0 +1,1 @@
+public delegate decimal CalculateDelegate(decimal first, decimal second);
