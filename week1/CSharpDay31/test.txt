@@ -1,0 +1,13 @@
+1. Predicate<T> luôn trả về kiểu gì?
+nó luôn trả về kiểu bool 
+
+2. Predicate<Product> yêu cầu method có chữ ký thế nào?
+Predicate yêu cầu phương thức có chữ ksy gồm tham số truyền vào là Product (reference type) và trả về bool
+
+3. Predicate<T> và Func<T, bool> giống nhau ở đâu?
+cả hai đều nhận T và trả về bool
+
+4. Vì sao List<Product>.Find() có thể nhận
+   ProductCondition.IsExpensive?
+List<Product>.Find() có một parameter kiểu Predicate<Product>. ProductCondition.IsExpensive 
+nhận một Product và trả về bool, nên chữ ký phù hợp với Predicate<Product> và có thể truyền vào Find().
