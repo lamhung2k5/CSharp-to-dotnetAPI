@@ -1,0 +1,39 @@
+1. Action và Func khác nhau ở điểm cốt lõi nào?
+cả hai đều là delegate được định nghĩa trong .NET, Action được sử dụng để trả về phương thức kiểu void (không có giá trị trả về), Func được sử dụng để trả về phương thức có trả về giá trị
+
+2. Func<string, int> có bao nhiêu parameter
+   và trả về kiểu gì?
+   Func này có 1 parameter kiểu string và trả về kiểu int
+
+3. Trong Func<int, int, decimal>,
+   decimal có ý nghĩa gì?
+   Func có hai tham số kiểu int và trả về kiểu decimal
+
+4. Vì sao Calculator.Add có thể được truyền vào
+   Func<decimal, decimal, decimal>?
+   vì cả hai đều có cùng chữ kí: nhận hai tham số đầu vào kiểu decimal và trả về kiểu decimal
+ ------------------------------------------------------------------------
+
+   1. Action và Func khác nhau ở điểm cốt lõi nào?
+
+Action và Func đều là các Delegate có sẵn trong .NET.
+Action đại diện cho các method trả về void,
+còn Func đại diện cho các method có giá trị trả về.
+
+
+2. Func<string, int> có bao nhiêu parameter và trả về kiểu gì?
+
+Có 1 parameter kiểu string và trả về kiểu int.
+
+
+3. Trong Func<int, int, decimal>, decimal có ý nghĩa gì?
+
+decimal là kiểu trả về của Func.
+Hai kiểu int phía trước là kiểu của hai parameter.
+
+
+4. Vì sao Calculator.Add có thể được truyền vào
+Func<decimal, decimal, decimal>?
+
+Vì Calculator.Add có chữ ký phù hợp:
+nhận hai parameter kiểu decimal và trả về decimal.
