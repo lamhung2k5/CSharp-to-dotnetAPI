@@ -13,7 +13,7 @@
         notification("Hello");
 
         //4.Thêm WriteLog bằng += để kiểm tra multicast.
-        notification += NotificationService.WriteLog;
+        notification += NotificationService.WriteL  og;
         notification("Hello");
 
         //5.Gọi ActionProcessor.Process("Order completed", NotificationService.SendEmail).

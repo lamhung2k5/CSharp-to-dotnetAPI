@@ -74,7 +74,8 @@ public class GenericStorage<T>
 
         if(_items.Count == 0)
         {
-            throw new InvalidOperationException("List is empty.");
+            Console.WriteLine("The storage is empty.");
+            return;
         }
 
         foreach(T item in _items)
