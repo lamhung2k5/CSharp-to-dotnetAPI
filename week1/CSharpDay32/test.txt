@@ -1,0 +1,30 @@
+1. Lambda Expression là gì?
+đây là cú pháp rút gọn cho phương thức không cần đặt tên
+
+2. x => x > 0 nhận kiểu gì và trả về kiểu gì nếu được gán cho Predicate<int>?
+nhân về kiểu int và trả vè kiểu bool 
+
+3. Vì sao products.Find(product => product.Price >= 1000) không cần tạo method 
+IsExpensive() riêng?
+Vì lambda expression cho phép chúng ta định nghĩa logic kiểm tra trực tiếp trong lời gọi phương thức, không cần phải tạo một phương thức riêng biệt.
+
+4. Expression Lambda và Statement Lambda khác nhau thế nào?
+Expression Lambda chỉ chứa một biểu thức và tự động trả về kết quả của biểu thức đó.
+Statement Lambda có thể chứa nhiều câu lệnh và cần sử dụng từ khóa return để trả về giá trị.
+
+5. Lambda có thay thế hoàn toàn Delegate không? Vì sao?
+không thwe thay thế hoàn toàn vì Lamda viết một hàm cho một trường hợp cụ thể, 
+còn Delegate có thể được suwer dụng để tham chiếu đến nhiều phương thức khác nhau và sử dụng trong các trường hợp khác nhay
+
+
+
+Lambda Expression là gì?
+Lambda Expression là cú pháp ngắn gọn để biểu diễn một hàm ẩn danh, thường được dùng để truyền hành vi vào Delegate hoặc các API nhận Delegate.
+x => x > 0 nhận kiểu gì và trả kiểu gì khi gán cho Predicate<int>?
+x có kiểu int và biểu thức x > 0 trả về bool.
+Vì sao products.Find(product => product.Price >= 1000) không cần method IsExpensive() riêng?
+Vì Lambda cho phép viết trực tiếp logic kiểm tra ngay tại nơi truyền Predicate<Product> vào Find().
+Expression Lambda và Statement Lambda khác nhau thế nào?
+Expression Lambda thường chỉ có một biểu thức và có thể tự trả kết quả của biểu thức đó. Statement Lambda sử dụng { } để chứa nhiều câu lệnh; nếu cần trả về giá trị thì phải dùng return, còn nếu Delegate trả void thì không cần.
+Lambda có thay thế hoàn toàn Delegate không?
+Không. Delegate là một kiểu dữ liệu dùng để tham chiếu đến method, còn Lambda là cú pháp biểu diễn một hàm ẩn danh. Lambda thường được chuyển thành một Delegate có chữ ký phù hợp.
