@@ -1,0 +1,50 @@
+Các câu trả lời chuẩn
+1. Trong p => p.Price >= 1000, p có kiểu gì và toàn bộ biểu thức trả kiểu gì?
+
+p có kiểu Product vì Lambda đang được sử dụng với List<Product>. Biểu thức p.Price >= 1000 là một phép so sánh nên trả về bool.
+
+Có thể hình dung:
+
+Product → bool
+2. Vì sao p.Name == "Mouse" vẫn là Predicate<Product> dù Name là string?
+
+Vì parameter của Lambda vẫn là một Product. Property Name chỉ được lấy từ object Product để thực hiện phép so sánh. Biểu thức p.Name == "Mouse" trả về bool, nên toàn bộ Lambda có dạng Product → bool, phù hợp với Predicate<Product>.
+
+Điểm quan trọng:
+
+p
+→ Product
+
+p.Name
+→ string
+
+p.Name == "Mouse"
+→ bool
+
+Do đó:
+
+Product → bool
+3. Find() và FindAll() khác nhau ở đâu?
+
+Find() trả về phần tử đầu tiên thỏa điều kiện và dừng tìm kiếm. FindAll() duyệt toàn bộ danh sách và trả về một List<T> chứa tất cả phần tử thỏa điều kiện.
+
+Với List<Product>:
+
+Find(...)
+→ Product?
+
+FindAll(...)
+→ List<Product>
+4. RemoveAll() trả về Product hay trả về giá trị gì?
+
+RemoveAll() trả về một giá trị int, là số lượng phần tử đã bị xóa khỏi List.
+
+Ví dụ:
+
+int removedCount =
+    products.RemoveAll(
+        p => p.Price < 50);
+
+Nếu xóa 2 sản phẩm:
+
+removedCount = 2
