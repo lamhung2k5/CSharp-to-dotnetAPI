@@ -1,0 +1,23 @@
+1. Class nào là Publisher? Vì sao?
+
+StudentService là Publisher vì nó sở hữu Event StudentRegistered và quyết định khi nào Event được phát thông qua StudentRegistered?.Invoke(...).
+
+2. Object nào là Subscriber?
+
+emailService, logService và welcomeNotificationService là các Subscriber vì chúng đăng ký handler vào Event StudentRegistered.
+
+3. SendWelcomeEmail() là Subscriber hay Event Handler?
+
+SendWelcomeEmail() là Event Handler. emailService mới là Subscriber.
+
+4. StudentService có cần biết cụ thể EmailService và LogService không?
+
+Không. StudentService chỉ phát Event. Các Subscriber tự đăng ký từ bên ngoài, nên Publisher không cần biết cụ thể ai đang nhận Event.
+
+5. Thêm SmsService có cần sửa StudentService không?
+
+Không. Chỉ cần tạo SmsService, tạo handler phù hợp và đăng ký handler đó vào StudentRegistered bằng +=.
+
+6. Event và Publisher/Subscriber có giống nhau không?
+
+Không. Event là cơ chế/công cụ của C#, còn Publisher/Subscriber là cách tổ chức các object giao tiếp thông qua Event
