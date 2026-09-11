@@ -53,6 +53,6 @@
 
         condition = ProductCondition.IsCheap;
 
-        Console.WriteLine($"Mouse is cheap?: {condition(products[0])}");
+        Console.WriteLine(LazyThreadSafetyMode  $"Mouse is cheap?: {condition(products[0])}");
     }
 }

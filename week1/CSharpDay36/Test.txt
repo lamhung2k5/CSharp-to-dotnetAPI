@@ -1,0 +1,70 @@
+1.Delegate trong C# là gì?
+Delegate trong C# là một kiểu dữ liệu tham chiếu đến phương thức có cùng chữ ký
+
+2.Multicast Delegate là gì?
+multicast delegate tham chiếu đến nhiều phương thức có cùng chữ ký
+
+3.Action khác Func ở điểm nào?
+Action trả về void, Func trả về một giá trị
+
+4.Predicate<T> có chữ ký như thế nào? Nó nhận gì và trả gì?
+Predicate nhận T và trả về bool (T là một reference type)
+
+5.Với: Func<Course, decimal> Course có vai trò gì? decimal có vai trò gì?
+đây là một Delegate nhận Course (tham số) và trả về Decimal (giá trị)
+
+6. Với Lambda: student => student.Id == normalizedStudentId
+student có kiểu gì? Toàn bộ Lambda trả kiểu gì?
+studetn có kiểu là Student và biểu thức lambda trả về bool
+
+
+7. Vì sao Lambda ở câu 6 có thể truyền vào:
+students.Find(...)
+hoặc:
+students.Exists(...)
+thì theo bản chất Find có cấu trúc Find(predicate<T> match), nó nhận một Prediacte kiểu T và trả về bool, câu 6 có cùng chữ kí nên có thể truyền vào, Exist cũng như vậy.
+
+8. Event trong C# được xây dựng dựa trên kiến thức nào?
+Event trong C# đươc xây dựng dựa trên tính đóng gói và delegate 
+
+9. Với Event, += và -= dùng để làm gì?
+nó dùng để đăng ký/hủy một phương thức trong event.
+
+10. Đoạn:
+CourseRegistered?.Invoke(registration);
+có ý nghĩa gì?
+Nó dùng để thực thi một hay nhiều phương thức được đăng ký trong event
+
+11. Vì sao RegistrationService được gọi là Publisher?
+Vì nó có chứa event, là lớp dùng để đăng ký hoặc hủy bỏ các event handler trong subscriber tương ứng
+
+12. Trong project của bạn, những object/class nào là Subscriber?
+nó bao gồm EmailSerivce, LogService, NotitficationService, RegistrationMessageService
+
+13. Các method:
+SendRegistrationEmail()
+WriteRegistrationLog()
+ShowRegistrationNotification()
+được gọi là gì trong mô hình Publisher/Subscriber?
+nó là các event handler.
+
+14. Vì sao RegistrationService không cần biết cụ thể EmailService tồn tại?
+--chưa trả lời được--
+
+15. Nếu bây giờ thêm:
+SmsService để nhận thông báo khi đăng ký thành công, có cần sửa RegistrationService không? Vì sao?
+không, vì ta chỉ cần truy cập vào lớp của subscriber và gọi event handler trong đó ra và đăng ký bằng +=
+
+16. Event và Publisher/Subscriber có phải cùng một khái niệm không? Nếu không thì khác nhau thế nào?
+không nhưng nó có liên quan đến nhau, event được khai báo để các thành phần bên ngoài (thường ở Program) không thể thực hiện đăng ký/ hủy các event handler,
+trong khi đó Publisher và subscriber và cách để tổ chức để quản lý event và việc đăng kí chúng
+
+17. Vì sao trong RegisterCourse() phải kiểm tra sinh viên đã đăng ký môn đó hay chưa?
+--chưa trả lời được--
+
+18. Vì sao:
+CourseRegistered?.Invoke(registration);
+phải đặt sau:
+registrations.Add(registration);
+chứ không nên phát Event trước?
+nó dùng để thông báo sự kiện đăng ký thành công trước rồi mới thực hiện thêm vào

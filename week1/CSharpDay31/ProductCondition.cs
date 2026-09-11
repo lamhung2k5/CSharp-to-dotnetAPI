@@ -9,4 +9,6 @@ public static class ProductCondition
     {
         return product.Price < 100;
     }
+
+    
 }

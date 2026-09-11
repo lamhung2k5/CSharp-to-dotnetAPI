@@ -1,0 +1,19 @@
+1. Event được xây dựng dựa trên kiến thức nào?
+
+Event được xây dựng dựa trên Delegate. event còn giúp đóng gói Delegate và giới hạn quyền thao tác của code bên ngoài.
+
+2. += và -= có vai trò gì với Event?
+
++= dùng để đăng ký một method vào Event, còn -= dùng để hủy đăng ký method khỏi Event.
+
+3. Vì sao dùng ?.Invoke()?
+
+Vì Event có thể đang null khi chưa có method nào đăng ký. ?.Invoke() chỉ gọi Event nếu nó khác null, nếu null thì bỏ qua.
+
+4. Vì sao code bên ngoài không nên tự phát OrderCompleted?
+
+Vì chỉ OrderService mới biết khi nào Order thật sự hoàn thành. Nếu code bên ngoài tự phát Event thì có thể thông báo sai trạng thái thực tế của Order.
+
+5. Event khác Delegate public bình thường ở điểm nào?
+
+Với Event, code bên ngoài chỉ được += và -=, không được ghi đè toàn bộ Event bằng = và không được tự Invoke(). Class sở hữu Event quyết định khi nào Event được phát.
