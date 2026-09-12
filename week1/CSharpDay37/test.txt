@@ -1,0 +1,14 @@
+1. LINQ là gì?
+LINQ là tập hợp các cú pháp dùng để lọc và truy vấn dữ liệu
+
+2. Where() dùng để làm gì?
+lọc các phần tử thoat điều kiện nào đó
+
+3. Lambda truyền vào Where() phải trả kiểu gì?
+kiểu bool
+
+4. Find() và Where() khác nhau thế nào?
+Find trả về một List thỏa điều kiện, Where trả về một IEnumerable<T> thỏa điều kiện
+
+5. Vì sao sau Where() có thể dùng ToList()?
+ToList() dùng để chuyển IEnumerable<T> về dạng List<T> nhưng vì sao có thể dùng thì mình chưa biết
