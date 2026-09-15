@@ -1,0 +1,40 @@
+1. Skip(n) dùng để làm gì?
+dùng để bỏ qua n phần tử trong một collection
+
+2.Take(n) dùng để làm gì?
+dùng để lấy n phần tử trong collection
+
+3. Skip(2).Take(3) hoạt động theo thứ tự nào?
+theo thứ tự bỏ qua hai phần tử, sau đó lấy 3 phần tử
+
+4. Nếu collection có 5 phần tử nhưng Skip(10) thì chuyện gì xảy ra?
+nó sẽ bỏ qua hết 5 phần tử này và trả về một IEnumerable<T> rỗng
+
+5. Nếu collection có 5 phần tử nhưng Take(10) thì chuyện gì xảy ra?
+nó sẽ trả về một IEnumerable<T> chứa 5 phần tử này
+
+6.Công thức: Skip((pageNumber - 1) * pageSize) có ý nghĩa gì?
+dùng để lấy một trang theo pageSize
+
+7. Vì sao phải dùng pageNumber - 1?
+để dùng cho trường hợp lấy trang đầu tiên
+
+Vì sao trong pagination thường nên OrderBy() trước Skip() và Take()?
+đảm bảo tính nhất quán của dữ liệu.
+
+Với:
+
+products
+    .Where(...)
+    .OrderBy(...)
+    .Skip(...)
+    .Take(...)
+    .Select(...)
+    .ToList();
+
+hãy mô tả chức năng và kiểu dữ liệu qua từng bước.
+đầu tiên lọc dữ liệu, nó trả về IEnumerable<T>, sau đó sắp xếp tăng dần, nó trả về một IOrderedEnumerable<T>, sau đó bỏ qua n phần tử, trả về IEnumerable<T>
+lấy n phần tử, kiểu IEnumerable<T>, sao đó chuyển từ IEnumerable<T> sang một IEnumerable<TAnother> và chuyển thành List<TAnother>  
+
+Nếu pageNumber = 0 thì có vấn đề gì về mặt nghiệp vụ?
+biểu thức trong skip trả về số âm
