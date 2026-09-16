@@ -1,0 +1,44 @@
+1. Distinct() dùng để làm gì?
+dùng để loại bỏ giá trị trùng và giữ lại một giá trị làm đại diện
+
+2. Distinct() trả về một phần tử hay một collection?
+nó trả về một collection, cụ thể là IEnumerable<T>
+
+3.Distinct() có sửa collection gốc không?
+nó không sửa collection gốc
+
+4.Với:
+products
+    .Select(p => p.Price)
+    .Distinct();
+hãy mô tả kiểu dữ liệu qua từng bước.
+luồng: lấy giá của các sản phẩm, chuyển từ IEnumerable<Product> thành IEnumerable<decimal>, sau đó trả về một IEnumerable<T> mới gồm các phần tử đã loại bỏ các phần tử trùng
+
+5. Vì sao Distinct() hoạt động đơn giản với int, decimal, string?
+--Trả lời theo cảm nghĩ--
+vì thường các giá trị này sẽ được lọc và loại bỏ dễ dàng hơn vì chỉ cần so sánh giữa hai phần tử có kiểu dữ liệu đó, nhưng đối với Product có phần pức tạp 
+vì cần phải có phương thức hoặc ghi đè phương thức so sánh hai đối tượng, ta không biết nên loại bỏ đối tượng bịt rùng theo tiêu chí nào
+
+
+6. Vì sao hai Product có cùng Id, Name, Price vẫn có thể không bị loại bởi Distinct()?
+--chưa trả lời--
+
+7. Select(p => p.Price).Distinct() khác products.Distinct() thế nào?
+Select(p => p.Price).Distinct(): loại bỏ các giá sản phẩm trùng, products.Distinct(): loại bỏ các sản phẩm trùng (sản phẩm là object).
+
+8. Distinct() có nhiệm vụ sắp xếp dữ liệu không?
+không
+
+9. Nếu collection rỗng thì Distinct() xảy ra chuyện gì?
+trả về một IEnumerable<T> rỗng
+
+10. Với:
+products
+    .Where(...)
+    .Select(...)
+    .Distinct()
+    .OrderBy(...)
+    .ToList();
+hãy mô tả chức năng và kiểu dữ liệu qua từng bước.
+đầu tiên lọc dữ liệu, kiểu dữ liệu là IEnumerable<T>, sau đó chuyển IEnumerable<T> chuyển thành IEnumerable<TAnother>, sau đó loại bỏ các giá trị trùng, kiểu là
+IEnumerable<TAnother>, sau đó sắp xếp tăng dần, kiểu là IEnumerable<TAnother>, sau đó chuyển thành List<TAnother>
