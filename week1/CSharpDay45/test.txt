@@ -1,0 +1,39 @@
+1. GroupBy() dùng để làm gì?
+dùng để gom các giá trị chung vào một nhóm
+
+2. Trong:
+products.GroupBy(
+    product => product.Price);
+Price đóng vai trò gì?
+nó đóng vai trò là khóa để gom nhóm các sản phầm theo giá
+
+3. group.Key là gì?
+dugf để lấy giá trị khóa trong IGrouping<Tkey, TValue>
+
+4. Nếu group theo Price, group.Key có kiểu gì?
+nó có kiểu decimal
+
+5. IGrouping<decimal, Product> có thể hiểu đơn giản là gì?
+đây là kiểu dữ liệu chứa khóa và sản phầm sau khi gom nhóm
+
+6. Vì sao thường dùng hai vòng foreach với GroupBy()?
+vòng lặp đầu dùng để lấy khóa, vòng lặp sau để lấy các phần tử của khóa sau khi gom nhóm
+
+7. Distinct() và GroupBy() khác nhau thế nào?
+Distinct loại các phần tử trùng và giữ lại một phần tử làm đại diện, GroupBy dùng để gom nhóm, các giá trị trùng sẽ được gom lại theo điều kiện khóa
+
+8. GroupBy() có sửa collection gốc không?
+không
+
+9. Một group có thể dùng tiếp Count(), Sum(), FirstOrDefault() không? Vì sao?
+được, vì một group được coi là một collection
+
+10. Với:
+
+products
+    .Where(...)
+    .GroupBy(...)
+    .OrderBy(...)
+
+hãy mô tả chức năng và kiểu dữ liệu qua từng bước.
+where dùng để lọc theo điều kiện, kiểu là IEnumerable<T>, sau đó gom nhóm theo khóa, trả về IEnumerable<IGrouping<TKey, T>> và sau đó sắp xếp tăng dần, kiểu trả về là IOrderedEnumerable<IGrouping<TKey, T>>
