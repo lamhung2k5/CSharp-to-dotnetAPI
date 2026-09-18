@@ -1,0 +1,39 @@
+Sau khi làm code, bạn trả lời các câu sau:
+
+1. Join() dùng để làm gì?
+join dùng để liên kết hai collection có cùng khóa
+
+2. Join() cơ bản làm việc với bao nhiêu collection?
+cơ bản từ 2 collection
+
+3. Trong ví dụ Student/Registration, khóa bên Student là gì?
+khóa bên student là Id
+
+4. Khóa bên Registration là gì?
+khóa bên Registration là StudentId
+
+5. Vì sao kiểu của hai khóa phải tương thích?
+phải tương thích để phép join có thể được thực thi, khóa của bên này mới liên kết được khóa của bên kia
+
+6. resultSelector dùng để làm gì?
+--chưa trả lời--
+
+7. Nếu một Student không có Registration phù hợp thì chuyện gì xảy ra?
+dữ liệu sẽ không hiện lên khi muốn hiện, tức là nó không liên kết được với một registration nào
+
+8. Nếu một Student match với ba Registration thì kết quả có bao nhiêu phần tử liên quan đến Student đó?
+sec ó 3 phần tử
+
+9. Join() có sửa collection gốc không?
+không
+
+Hãy giải thích từng thành phần:
+students.Join(
+    registrations,
+    student => student.Id,
+    registration => registration.StudentId,
+    (student, registration) =>
+        $"{student.Name} - {registration.CourseName}"
+);
+
+đầu tiên students join với registrations, lấy khóa của students và registrations join với nhau để cho ra kết quả cuối cùng là một IEnumerable<string> gồm các chuỗi, mỗi chuỗi chứa tên sinh viên và tên khóa học
